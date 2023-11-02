@@ -1,14 +1,14 @@
-#define der1 6
-#define izq1 5
-#define der2 9
-#define izq2 3
-
+#define mot1_DER 5
+#define mot1_IZQ 4
+#define mot2_DER 3
+#define mot2_IZQ 2
 
 void setup() {
-  pinMode(der1, OUTPUT);
-  pinMode(izq1, OUTPUT);
-  pinMode(der2, OUTPUT);
-  pinMode(izq2, OUTPUT);
+  pinMode(mot1_DER, OUTPUT);
+  pinMode(mot1_IZQ, OUTPUT);
+  
+  pinMode(mot1_DER, OUTPUT);
+  pinMode(mot2_IZQ, OUTPUT);
 }
 
 void loop() {
@@ -23,36 +23,36 @@ void loop() {
 }
 
 void adelante(){
-  digitalWrite(izq1, LOW);
-  digitalWrite(der1, HIGH);
-  digitalWrite(izq2, LOW);
-  digitalWrite(der2, HIGH);
+  digitalWrite(mot1_IZQ, LOW);
+  digitalWrite(mot1_DER, HIGH);
+  digitalWrite(mot2_IZQ, HIGH);
+  digitalWrite(mot2_DER, LOW);
 }
 
 void atras(){
-  digitalWrite(izq1, HIGH);
-  digitalWrite(der1, LOW);
-  digitalWrite(izq2, HIGH);
-  digitalWrite(der2, LOW);
-}
-
-void izquierda(){
-  digitalWrite(izq1, LOW);
-  digitalWrite(der1, HIGH);
-  digitalWrite(izq2, HIGH);
-  digitalWrite(der2, LOW);
+  digitalWrite(mot1_IZQ, HIGH);
+  digitalWrite(mot1_DER, LOW);
+  digitalWrite(mot2_IZQ, LOW);
+  digitalWrite(mot2_DER, HIGH);
 }
 
 void derecha(){
-  digitalWrite(izq1, HIGH);
-  digitalWrite(der1, LOW);
-  digitalWrite(izq2, LOW);
-  digitalWrite(der2, HIGH);
+  digitalWrite(mot1_IZQ, HIGH);
+  digitalWrite(mot1_DER, LOW);
+  digitalWrite(mot2_IZQ, HIGH);
+  digitalWrite(mot2_DER, LOW);
+}
+
+void izquierda(){
+  digitalWrite(mot1_IZQ, LOW);
+  digitalWrite(mot1_DER, HIGH);
+  digitalWrite(mot2_IZQ, LOW);
+  digitalWrite(mot2_DER, HIGH);
 }
 
 void freno(){
-  digitalWrite(izq1, LOW);
-  digitalWrite(der1, LOW);
-  digitalWrite(izq2, LOW);
-  digitalWrite(der2, LOW);
+  digitalWrite(mot1_IZQ, LOW);
+  digitalWrite(mot1_DER, LOW);
+  digitalWrite(mot2_IZQ, LOW);
+  digitalWrite(mot2_DER, LOW);
 }
