@@ -10,6 +10,8 @@
 SoftwareSerial modu(TXD, RXD); //comunicación entre arduino y módulo
 
 char accion;
+int aux = 0;
+int tiempoAct = 0;
 
 void setup() {
   modu.begin(9600);
@@ -18,64 +20,70 @@ void setup() {
   pinMode(mot1_IZQ, OUTPUT);
   pinMode(mot1_DER, OUTPUT);
   pinMode(mot2_IZQ, OUTPUT);
-  pinMode(mot2_DER, OUTPUT); 
+  pinMode(mot2_DER, OUTPUT);
 }
 
 void loop() {
-  if (modu.available()){
+  if (modu.available()) {
     accion = modu.read();
     Serial.println(accion);
+    aux = 0;
   } else {
-    accion = 'p';
-    Serial.println("error en la conexión");
+    if (aux == 0) {
+      tiempoAct = millis();
+    } else if (aux == 1) {
+      if (millis() - tiempoAct > 500) {
+        accion = 'p';
+        Serial.println("error en la conexión");
+      }
+    }
   }
-  if (accion == 'f'){ //Si lee 'f', que el auto vaya adelante.
+  if (accion == 'f') { //Si lee 'f', que el auto vaya adelante.
     adelante();
   }
-  if (accion == 'b'){ //Si lee 'b', que vaya atrás.
+  if (accion == 'b') { //Si lee 'b', que vaya atrás.
     atras();
   }
-  if (accion == 'r'){ //Si lee 'r', a la derecha.
+  if (accion == 'r') { //Si lee 'r', a la derecha.
     derecha();
   }
-  if (accion == 'l'){
+  if (accion == 'l') {
     izquierda();
   }
-  if (accion == 'p'){
+  if (accion == 'p') {
     freno();
   }
 }
 
-
-void adelante(){
+void adelante() {
   digitalWrite(mot1_IZQ, LOW);
   digitalWrite(mot1_DER, HIGH);
   digitalWrite(mot2_IZQ, HIGH);
   digitalWrite(mot2_DER, LOW);
 }
 
-void atras(){
+void atras() {
   digitalWrite(mot1_IZQ, HIGH);
   digitalWrite(mot1_DER, LOW);
   digitalWrite(mot2_IZQ, LOW);
   digitalWrite(mot2_DER, HIGH);
 }
 
-void izquierda(){
+void izquierda() {
   digitalWrite(mot1_IZQ, HIGH);
   digitalWrite(mot1_DER, LOW);
   digitalWrite(mot2_IZQ, HIGH);
   digitalWrite(mot2_DER, LOW);
 }
 
-void derecha(){
+void derecha() {
   digitalWrite(mot1_IZQ, LOW);
   digitalWrite(mot1_DER, HIGH);
   digitalWrite(mot2_IZQ, LOW);
   digitalWrite(mot2_DER, HIGH);
 }
 
-void freno(){
+void freno() {
   digitalWrite(mot1_IZQ, LOW);
   digitalWrite(mot1_DER, LOW);
   digitalWrite(mot2_IZQ, LOW);
