@@ -25,22 +25,20 @@ void loop() {
   if (modu.available()) {
     accion = modu.read();
     Serial.println(accion);
-    if (accion == 'f') {
-      adelante();
-    }
-    if (accion == 'b') {
-      atras();
-    }
-    if (accion == 'r') {
-      derecha();
-    }
-    if (accion == 'l') {
-      izquierda();
-    }
-    if (accion == 'p') {
-      freno();
-    }
-  } else {
+  }
+  if (accion == 'f') {
+    adelante();
+  }
+  if (accion == 'b') {
+    atras();
+  }
+  if (accion == 'r') {
+    derecha();
+  }
+  if (accion == 'l') {
+    izquierda();
+  }
+  if (accion == 'p') {
     freno();
   }
 }
