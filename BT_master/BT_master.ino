@@ -5,7 +5,7 @@
 SoftwareSerial modu(TXD, RXD);
 
 void setup() {
-  modu.begin(38400);
+  modu.begin(9600);
   Serial.begin(9600);
 }
 
